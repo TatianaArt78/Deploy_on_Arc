@@ -15,8 +15,7 @@ jobs:
       - name: Install Foundry
         run: |
           curl -L https://foundry.paradigm.xyz | bash
-          source ~/.bashrc || true
-          foundryup
+          ~/.foundry/bin/foundryup
 
       - name: Build contract
         run: forge build
