@@ -1,70 +1,43 @@
-🚀 HelloArchitect — смарт-контракт, задеплоенный в тестовой сети Arc
+![Built with Foundry](https://img.shields.io/badge/Built%20with-Foundry-blue)
+![Deployed on Arc Testnet](https://img.shields.io/badge/Deployed%20on-Arc%20Testnet-green)
 
-Этот проект показывает, как развернуть простой контракт в Arc Testnet с помощью Foundry и GitHub Actions (без установки локальных инструментов).
+## 🌐 Детали деплоя
 
-🧱 Контракт
+✅ Контракт успешно задеплоен в **Arc Testnet**
 
-Файл: src/HelloArchitect.sol
+- **Адрес деплойера:** `0x8E3A079D4e48d8aC485c669367Ee6d60E4bF2dA6`  
+- **Адрес контракта:** `0xF44789647F8FE0a27487b26eb92E4f3E1334487C`  
+- **Хэш транзакции:** [`0xfe4da8f10c5cb4e39c29772ae8c73a68068a303cb478d95f113039568f166efc`](https://explorer.arc.network/)
 
-Контракт возвращает и изменяет приветствие.
+---
 
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.30;
+## ⚙️ Автоматический деплой через GitHub Actions
 
-contract HelloArchitect {
-    string private greeting = "Hello Architect!";
+**Файл воркфлоу:** `.github/workflows/deploy.yml`
 
-    event GreetingChanged(string newGreeting);
+Деплой запускается вручную во вкладке **Actions → Run workflow**.
 
-    function getGreeting() public view returns (string memory) {
-        return greeting;
-    }
+**Что делает воркфлоу:**
+- Устанавливает Foundry  
+- Компилирует смарт-контракт  
+- Деплоит его в тестовую сеть Arc с использованием приватного ключа и RPC URL, сохранённых в GitHub Secrets
 
-    function setGreeting(string memory newGreeting) public {
-        greeting = newGreeting;
-        emit GreetingChanged(newGreeting);
-    }
-}
+---
 
-🌐 Деплой
+## 🧪 Как повторить шаги
 
-✅ Контракт задеплоен в Arc Testnet
+1. Создай новый репозиторий на GitHub  
+2. Добавь свой Solidity-файл в папку `src/`  
+3. Создай два секрета в разделе **Settings → Secrets → Actions**:
+   - `PRIVATE_KEY` → приватный ключ кошелька (на нём должны быть тестовые токены)
+   - `ARC_TESTNET_RPC_URL` → RPC-эндпоинт тестовой сети Arc  
+4. Добавь файл воркфлоу: `.github/workflows/deploy.yml`  
+5. Запусти деплой во вкладке **Actions**
 
-Deployer: 0x8E3A079D4e48d8aC485c669367Ee6d60E4bF2dA6
+---
 
-Contract address: 0xF44789647F8FE0a27487b26eb92E4f3E1334487C
+## 📖 Полезные ссылки
 
-Transaction hash: 0xfe4da8f10c5cb4e39c29772ae8c73a68068a303cb478d95f113039568f166efc
-
-⚙️ Автоматический деплой через GitHub Actions
-
-Файл workflow: .github/workflows/deploy.yml
-
-uses: foundry-rs/foundry-toolchain@v1
-with:
-  version: stable
-
-
-Deployment запускается вручную во вкладке Actions → Run workflow.
-
-🧪 Как повторить
-
-Создай репозиторий и добавь контракт в src/HelloArchitect.sol
-
-Создай секреты:
-
-PRIVATE_KEY — приватный ключ кошелька с тестовыми токенами Arc
-
-ARC_TESTNET_RPC_URL — RPC-ссылка на Arc testnet
-
-Добавь .github/workflows/deploy.yml
-
-Запусти деплой во вкладке Actions
-
-📖 Полезные ссылки
-
-🌐 Arc Docs — Deploy on Arc
-
-💧 Arc Faucet
-
-🔍 Arc Explorer
+- 🌐 [Документация Arc — Deploy on Arc](https://docs.arc.network/arc/tutorials/deploy-on-arc)  
+- 💧 [Arc Faucet (получить тестовые токены)](https://faucet.arc.network/)  
+- 🔍 [Arc Explorer (проверить транзакцию)](https://explorer.arc.network/)
