@@ -39,5 +39,5 @@
 ## 📖 Полезные ссылки
 
 - 🌐 [Документация Arc — Deploy on Arc](https://docs.arc.network/arc/tutorials/deploy-on-arc)  
-- 💧 [Arc Faucet (получить тестовые токены)](https://faucet.arc.network/)  
+- 💧 [Arc Faucet (получить тестовые токены)](https://faucet.circle.com/)  
 - 🔍 [Arc Explorer (проверить транзакцию)](https://explorer.arc.network/)
