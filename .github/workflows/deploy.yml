@@ -1,23 +1,22 @@
+name: Deploy to Arc Testnet
+
 on:
   workflow_dispatch:
   push:
     branches: [ main ]
-name: Deploy to Arc Testnet
-
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Install Foundry
-        run: |
-          curl -L https://foundry.paradigm.xyz | bash
-          export PATH="$PATH:/home/runner/.foundry/bin"
-          foundryup
-
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
 
       - name: Build contract
         run: forge build
@@ -29,5 +28,4 @@ jobs:
         run: |
           forge create src/HelloArchitect.sol:HelloArchitect \
             --rpc-url $ARC_TESTNET_RPC_URL \
-            --private-key $PRIVATE_KEY \
-            --broadcast
+            --private-key $PRIVATE_KEY
