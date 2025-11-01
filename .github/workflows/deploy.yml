@@ -15,7 +15,9 @@ jobs:
       - name: Install Foundry
         run: |
           curl -L https://foundry.paradigm.xyz | bash
-          ~/.foundry/bin/foundryup
+          export PATH="$PATH:/home/runner/.foundry/bin"
+          foundryup
+
 
       - name: Build contract
         run: forge build
